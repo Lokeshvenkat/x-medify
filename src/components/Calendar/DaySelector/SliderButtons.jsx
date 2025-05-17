@@ -1,52 +1,32 @@
 import { useSwiper } from 'swiper/react';
-import next from '../../../assets/next.jpg';
-import prev from '../../../assets/prev.jpg';
+import next from '../../../assets/next.png';
+import prev from '../../../assets/prev.png';
 import { Box } from '@mui/material';
+import styles from './SliderButtons.module.css';
+import React from 'react';
 
-/**
- * SlidePrevButton component for navigating to the previous slide.
- */
 function SlidePrevButton() {
     const swiper = useSwiper();
     return (
         <Box
-            component='img'
+            component="img"
             src={prev}
             onClick={() => swiper.slidePrev()}
-            sx={{
-                height: 48,
-                width: 48,
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                cursor: 'pointer',
-                zIndex: 999,
-                bgcolor: '#fff',
-            }}
+            className={`${styles.buttonImg} ${styles.prevButton}`}
+            alt="Previous"
         />
     );
 }
 
-/**
- * SlideNextButton component for navigating to the next slide.
- */
 function SlideNextButton() {
     const swiper = useSwiper();
     return (
         <Box
-            component='img'
+            component="img"
             src={next}
             onClick={() => swiper.slideNext()}
-            sx={{
-                height: 48,
-                width: 48,
-                position: 'absolute',
-                right: 0,
-                top: 0,
-                cursor: 'pointer',
-                zIndex: 999,
-                bgcolor: '#fff',
-            }}
+            className={`${styles.buttonImg} ${styles.nextButton}`}
+            alt="Next"
         />
     );
 }

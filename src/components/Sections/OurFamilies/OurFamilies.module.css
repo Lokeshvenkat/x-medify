@@ -1,0 +1,4 @@
+.containerBackground {
+  background: linear-gradient(#E7F0FF, #E8F1FF);
+  padding-top: 24px; /* roughly pt={3} in MUI (3 * 8px = 24px) */
+}

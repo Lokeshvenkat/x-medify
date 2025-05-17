@@ -1,0 +1,65 @@
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.featuredImage {
+  width: 100%;
+  display: block;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.content {
+  padding: 16px;
+}
+
+.categoryDate {
+  color: #77829D;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+@media (min-width: 900px) {
+  .categoryDate {
+    font-size: 16px;
+  }
+}
+
+.title {
+  color: #1B3C74;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  .title {
+    font-size: 18px;
+  }
+}
+
+.authorStack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authorImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.authorName {
+  color: #1B3C74;
+  font-size: 12px;
+}
+
+@media (min-width: 900px) {
+  .authorName {
+    font-size: 16px;
+  }
+}

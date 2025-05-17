@@ -1,0 +1,17 @@
+.buttonImg {
+  height: 48px;
+  width: 48px;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  z-index: 999;
+  background-color: #fff;
+}
+
+.prevButton {
+  left: 0;
+}
+
+.nextButton {
+  right: 0;
+}

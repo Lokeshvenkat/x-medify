@@ -1,0 +1,16 @@
+.formContainer {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .formContainer {
+    flex-direction: row;
+  }
+}
+
+.phoneInput {
+  border: 1px solid #f0f0f0;
+  flex: 1;
+}

@@ -1,61 +1,52 @@
-import { Box, Container } from "@mui/material";
+import { React, Box, Container } from "@mui/material";
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
-import offer1 from '../../../assets/offer1.jpg';
-import offer2 from '../../../assets/offer2.jpg';
+import offer1 from '../../../assets/offer1.png';
+import offer2 from '../../../assets/offer2.png';
 
-// Define styles object for the Offers component
-const styles = {
-  container: {
-    py: 6,
-  },
-  swiperSlide: {
-    component: 'img',
-  },
-};
 
 export default function Offers() {
   return (
-    <Box sx={styles.container}>
+    <Box py={6}>
       <Container maxWidth='xl'>
-        {/* Swiper component for displaying offer images */}
+        {/* Swiper slider with pagination */}
         <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          modules={[Pagination]}
+          slidesPerView={1}           // Show 1 slide per view by default (mobile)
+          spaceBetween={30}           // 30px space between slides
+          modules={[Pagination]}      // Include pagination module
           pagination={{
-            clickable: true,
+            clickable: true           // Pagination bullets are clickable
           }}
           breakpoints={{
-            767: {
-              slidesPerView: 3,
-            },
+            767: {                   // For viewport width >= 767px, show 3 slides at once
+              slidesPerView: 3
+            }
           }}
         >
-          {/* Swiper slides with offer images */}
+          {/* Slides with offer images */}
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer1 }} />
+            <Box component={'img'} src={offer1} />
           </SwiperSlide>
 
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer2 }} />
+            <Box component={'img'} src={offer2} />
           </SwiperSlide>
 
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer1 }} />
+            <Box component={'img'} src={offer1} />
           </SwiperSlide>
 
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer2 }} />
+            <Box component={'img'} src={offer2} />
           </SwiperSlide>
 
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer1 }} />
+            <Box component={'img'} src={offer1} />
           </SwiperSlide>
 
           <SwiperSlide>
-            <Box sx={{ ...styles.swiperSlide, src: offer2 }} />
+            <Box component={'img'} src={offer2} />
           </SwiperSlide>
         </Swiper>
       </Container>

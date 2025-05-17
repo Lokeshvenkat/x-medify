@@ -1,70 +1,35 @@
 import mobile from "../../../assets/mobile.jpg";
-import playstore from "../../../assets/playstore.jpg";
-import apple from "../../../assets/apple-logo.jpg";
-import arrow from "../../../assets/down-arr.jpg";
+import playstore from "../../../assets/playstore.png";
+import apple from "../../../assets/apple-logo.png";
+import arrow from "../../../assets/down-arr.png";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import SmsForm from "./SmsForm";
+import styles from "./DownloadApp.module.css";
+import React from 'react';
 
-// Styles for the DownloadApp component
-const styles = {
-  container: {
-    background: "linear-gradient(#E7F0FF 100%, #E8F1FF 47%)",
-    pt: 5,
-  },
-  mobileImage: {
-    component: "img",
-    src: mobile,
-    width: 1,
-    height: "auto",
-  },
-  contentBox: {
-    position: "relative",
-    pl: { xs: "36px", md: "50px" },
-    mb: { xs: 4, md: 0 },
-  },
-  title: {
-    variant: "h2",
-    mb: 2,
-  },
-  arrowImage: {
-    component: "img",
-    src: arrow,
-    width: { xs: 24, md: 40 },
-    position: "absolute",
-    left: 0,
-    top: 50,
-  },
-  buttonStack: {
-    direction: { xs: "column", md: "row" },
-    spacing: { xs: 1, md: 2 },
-  },
-  button: {
-    bgcolor: "#333",
-    color: "#fff",
-    py: 1.5,
-    borderRadius: 1.5,
-    size: "large",
-    variant: "contained",
-    disableElevation: true,
-  },
-};
-
+/**
+ * DownloadApp component renders the download section with
+ * an image, heading, SmsForm for phone input, and download buttons.
+ */
 export default function DownloadApp() {
   return (
-    // Main container with gradient background
-    <Box sx={styles.container}>
+    <Box className={styles.downloadSection}>
       <Container>
         <Grid container spacing={3} alignItems="center">
-          {/* Mobile image section */}
+          {/* Mobile phone image */}
           <Grid item xs={12} md={5.5}>
-            <Box sx={styles.mobileImage} />
+            <Box
+              src={mobile}
+              component="img"
+              className={styles.mobileImage}
+              alt="Mobile app preview"
+            />
           </Grid>
 
-          {/* Content section */}
+          {/* Content including heading, arrow, form, and buttons */}
           <Grid item xs={12} md={6.5}>
-            <Box sx={styles.contentBox}>
-              {/* Title with highlighted app name */}
-              <Typography sx={styles.title}>
+            <Box className={styles.contentWrapper}>
+              <Typography variant="h2" mb={2}>
                 Download the
                 <br />
                 <Box component="span" color="primary.main">
@@ -73,23 +38,35 @@ export default function DownloadApp() {
                 App
               </Typography>
 
-              {/* Arrow image */}
-              <Box sx={styles.arrowImage} />
+              <Box
+                src={arrow}
+                component="img"
+                className={styles.arrowImage}
+                alt="Arrow"
+              />
 
-              {/* SMS form component */}
               <SmsForm />
 
               {/* Download buttons for Google Play and App Store */}
-              <Stack sx={styles.buttonStack}>
+              <Stack
+                direction={{ xs: "column", md: "row" }}
+                spacing={{ xs: 1, md: 2 }}
+              >
                 <Button
-                  sx={styles.button}
-                  startIcon={<img src={playstore} height={24} alt="" />}
+                  size="large"
+                  startIcon={<img src={playstore} height={24} alt="Google Play" />}
+                  variant="contained"
+                  disableElevation
+                  className={styles.appButton}
                 >
                   Google Play
                 </Button>
                 <Button
-                  sx={styles.button}
-                  startIcon={<img src={apple} height={24} alt="" />}
+                  size="large"
+                  startIcon={<img src={apple} height={24} alt="App Store" />}
+                  variant="contained"
+                  disableElevation
+                  className={styles.appButton}
                 >
                   App Store
                 </Button>

@@ -1,0 +1,31 @@
+.background {
+  background: linear-gradient(#E7F0FF, #E8F1FF);
+  padding-top: 48px;  /* py={6} → 6 * 8 = 48px */
+  padding-bottom: 48px;
+}
+
+.list {
+  font-size: 12px; /* base font size for xs */
+}
+
+.listPrimaryText {
+  font-weight: 500;
+  color: #1B3C74;
+}
+
+.listPrimaryTextSmall {
+  font-size: 14px; /* xs font size */
+}
+
+.listPrimaryTextLarge {
+  font-size: 18px; /* md font size */
+}
+
+.listItemIcon {
+  min-width: 32px;
+}
+
+.tickImage {
+  height: 22px;
+  width: 22px;
+}

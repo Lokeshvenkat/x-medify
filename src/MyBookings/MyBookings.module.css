@@ -1,0 +1,31 @@
+/* Background gradient for the main container */
+.background {
+  background: linear-gradient(#EFF5FE, rgba(241, 247, 255, 0.47));
+}
+
+/* Header section styling with gradient and rounded bottom corners */
+.headerSection {
+  margin-bottom: 50px;
+  padding-top: 1rem;
+  position: relative;
+  background: linear-gradient(90deg, #2AA7FF, #0C8CE5);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+/* White search box with padding, rounded corners and shadow, shifted down */
+.searchBox {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  translate: 0 50px;
+  width: 100%;
+}
+
+/* On medium and larger screens, limit search box width */
+@media (min-width: 768px) {
+  .searchBox {
+    width: auto;
+  }
+}

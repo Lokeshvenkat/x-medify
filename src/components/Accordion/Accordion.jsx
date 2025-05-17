@@ -6,45 +6,46 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 
-// Define styles for the Accordion component
+// Styled Accordion component with no gutters, no elevation, and no bottom border line
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
     '&::before': {
-        display: 'none', // Remove the default separator line
+        display: 'none', // removes default divider line
     },
     '&:not(:last-child)': {
-        marginBottom: 24, // Add margin between accordion items
+        marginBottom: 24, // spacing between accordions except last one
     },
 }));
 
-// Define styles for the AccordionSummary component
+// Styled AccordionSummary with custom expand icon and adjusted padding
 const AccordionSummary = styled((props) => (
     <MuiAccordionSummary
         expandIcon={<AddIcon sx={{ color: 'primary.main' }} />}
         {...props}
     />
 ))(({ theme }) => ({
-    backgroundColor: 'transparent', // Set background color to transparent
+    backgroundColor: false, // disables default background
     '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-        transform: 'rotate(45deg)', // Rotate the expand icon when expanded
+        transform: 'rotate(45deg)', // rotates icon when expanded
     },
     '& .MuiAccordionSummary-content': {
-        marginLeft: 0, // Remove left margin for content
+        marginLeft: 0, // removes default margin
     },
-    padding: 0, // Remove padding
+    padding: 0, // removes default padding
 }));
 
-// Define styles for the AccordionDetails component
+// Styled AccordionDetails with no padding
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    padding: 0, // Remove padding
+    padding: 0,
 }));
 
-// Define the CustomizedAccordions component
+// Functional component rendering a list of expandable accordion items from data prop
 export default function CustomizedAccordions({ data }) {
+    // State to keep track of which panel is currently expanded
     const [expanded, setExpanded] = React.useState('');
 
-    // Handle accordion expansion
+    // Handler to toggle accordion expansion
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
@@ -52,21 +53,26 @@ export default function CustomizedAccordions({ data }) {
     return (
         <div>
             {data.map((item, index) => (
-                <Accordion key={index} expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)}>
-                    <AccordionSummary aria-controls={`panel${index}d-content`} id={`panel${index}d-header`}>
+                <Accordion
+                    key={index}
+                    expanded={expanded === `panel${index}`}
+                    onChange={handleChange(`panel${index}`)}
+                >
+                    <AccordionSummary
+                        aria-controls={`panel${index}d-content`}
+                        id={`panel${index}d-header`}
+                    >
                         <Typography
                             fontSize={18}
                             fontWeight={700}
-                            color='#1B3C74'
+                            color="#1B3C74"
                             lineHeight={1.2}
                         >
                             {item.question}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Typography
-                            fontSize={14}
-                        >
+                        <Typography fontSize={14}>
                             {item.answer}
                         </Typography>
                     </AccordionDetails>

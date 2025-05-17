@@ -3,38 +3,20 @@ import { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "./SearchHospital.module.css";
+import React from 'react';
 
-// Define styles object for the SearchHospital component
-const styles = {
-  formContainer: {
-    display: "flex",
-    gap: 4,
-    justifyContent: "space-between",
-    flexDirection: { xs: "column", md: "row" },
-  },
-  selectField: {
-    minWidth: 200,
-    width: "100%",
-  },
-  searchButton: {
-    type: "submit",
-    variant: "contained",
-    size: "large",
-    startIcon: <SearchIcon />,
-    sx: { py: "15px", px: 8, flexShrink: 0 },
-    disableElevation: true,
-  },
-};
-
+/**
+ * SearchHospital component allows users to select State and City from dropdowns.
+ * Fetches states and cities dynamically via API calls and navigates to search page with selected values.
+ */
 export default function SearchHospital() {
-  // State to store the list of states and cities
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  // State to store the form data
   const [formData, setFormData] = useState({ state: "", city: "" });
   const navigate = useNavigate();
 
-  // Fetch states data on component mount
+  // Fetch all states on component mount
   useEffect(() => {
     const fetchStates = async () => {
       try {
@@ -50,18 +32,18 @@ export default function SearchHospital() {
     fetchStates();
   }, []);
 
-  // Fetch cities data when the state is selected
+  // Fetch cities when state changes
   useEffect(() => {
     const fetchCities = async () => {
       setCities([]);
-      setFormData((prev) => ({ ...prev, city: "" }));
+      setFormData((prev) => ({ ...prev, city: "" })); // Reset city selection
       try {
         const data = await axios.get(
           `https://meddata-backend.onrender.com/cities/${formData.state}`
         );
         setCities(data.data);
       } catch (error) {
-        console.log("Error in fetching city:", error);
+        console.error("Error fetching cities:", error);
       }
     };
 
@@ -70,13 +52,13 @@ export default function SearchHospital() {
     }
   }, [formData.state]);
 
-  // Handle form input changes
+  // Handle select field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
+  // On form submit, navigate with query params if both selected
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.state && formData.city) {
@@ -88,9 +70,8 @@ export default function SearchHospital() {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={styles.formContainer}
+      className={styles.formContainer}
     >
-      {/* State selection dropdown */}
       <Select
         displayEmpty
         id="state"
@@ -103,9 +84,9 @@ export default function SearchHospital() {
           </InputAdornment>
         }
         required
-        sx={styles.selectField}
+        className={styles.selectField}
       >
-        <MenuItem disabled value="" selected>
+        <MenuItem disabled value="">
           State
         </MenuItem>
         {states.map((state) => (
@@ -115,7 +96,6 @@ export default function SearchHospital() {
         ))}
       </Select>
 
-      {/* City selection dropdown */}
       <Select
         displayEmpty
         id="city"
@@ -128,9 +108,9 @@ export default function SearchHospital() {
           </InputAdornment>
         }
         required
-        sx={styles.selectField}
+        className={styles.selectField}
       >
-        <MenuItem disabled value="" selected>
+        <MenuItem disabled value="">
           City
         </MenuItem>
         {cities.map((city) => (
@@ -140,8 +120,15 @@ export default function SearchHospital() {
         ))}
       </Select>
 
-      {/* Search button */}
-      <Button sx={styles.searchButton}>
+      <Button
+        type="submit"
+         id="searchBtn"
+        variant="contained"
+        size="large"
+        startIcon={<SearchIcon />}
+        className={styles.searchButton}
+        disableElevation
+      >
         Search
       </Button>
     </Box>

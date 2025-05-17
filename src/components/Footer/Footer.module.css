@@ -1,0 +1,31 @@
+.footerText {
+  font-weight: 300;
+  color: #fff;
+  font-size: 14px;
+  padding-top: 24px;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.socialIcon {
+  height: 36px;
+  cursor: pointer;
+}
+
+
+/* Main wrapper for footer */
+.footerWrapper {
+  background-color: #E8F9F8; /* Replace with --mui-palette-primary-secondary if using MUI variables */
+  padding-top: 48px;  /* Equivalent to pt={6} */
+  padding-bottom: 24px; /* Equivalent to pb={3} */
+}
+
+/* Footer bottom text */
+.footerCopyright {
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 14px;
+  padding-top: 24px;   /* pt={3} */
+  margin-top: 40px;    /* mt={5} */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -3,33 +3,27 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import { startOfDay } from "date-fns";
 import TimeSlotPicker from "./TimeSlotPicker/TimeSlotPicker";
-
-// Define styles object
-const styles = {
-  container: {
-    // You can add specific styles for the container if needed
-  },
-};
+import React from 'react';
 
 export default function Calendar({ availableSlots, details, handleBooking }) {
-  // State to store the selected date
+  // State to keep track of the currently selected date, initialized to start of today
   const [selectedDate, setSelectedDate] = useState(startOfDay(new Date()));
 
-  // Calculate the total number of available slots
+  // Calculate total number of available slots across morning, afternoon, and evening
   const totalSlots =
     availableSlots.morning.length +
     availableSlots.afternoon.length +
     availableSlots.evening.length;
 
   return (
-    <Box sx={styles.container}>
-      {/* DaySelector component for selecting a date */}
+    <Box>
+      {/* DaySelector lets user pick a date */}
       <DaySelector
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         totalSlots={totalSlots}
       />
-      {/* TimeSlotPicker component for selecting a time slot */}
+      {/* TimeSlotPicker shows slots for the selected date and handles booking */}
       <TimeSlotPicker
         availableSlots={availableSlots}
         selectedDate={selectedDate}

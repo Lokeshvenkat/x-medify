@@ -1,54 +1,34 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import BlogCard from "./BlogCard";
+import styles from "./Blogs.module.css";
+import React from 'react';
 
-// Styles for the Blogs component
-const styles = {
-  container: {
-     py: 6 
-    },
-  heading: { 
-    color: 'primary.main', 
-  fontWeight: 600, 
-  textAlign: 
-  'center' 
-},
-  subHeading: { 
-    textAlign: 'center',
-     variant: 'h2',
-      mb: 2 
-    },
-  gridContainer: { 
-    spacing: 4 
-},
-  gridItem: { 
-    xs: 12, 
-    md: 4 
-},
-};
-
+/**
+ * Blogs component renders a section showcasing blog cards with a header.
+ */
 export default function Blogs() {
   return (
-    <Box sx={styles.container}>
+    <Box className={styles.blogsSection}>
       <Container>
-        {/* Main heading for the blogs section */}
-        <Typography sx={styles.heading}>
+        {/* Section main title */}
+        <Typography className={styles.titlePrimary} component="h4">
           Blog & News
         </Typography>
 
-        {/* Subheading for the blogs section */}
-        <Typography sx={styles.subHeading}>
+        {/* Section subtitle */}
+        <Typography className={styles.titleSecondary} variant="h2">
           Read Our Latest News
         </Typography>
 
         {/* Grid layout for blog cards */}
-        <Grid container sx={styles.gridContainer}>
-          <Grid item sx={styles.gridItem}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
             <BlogCard />
           </Grid>
-          <Grid item sx={styles.gridItem}>
+          <Grid item xs={12} md={4}>
             <BlogCard />
           </Grid>
-          <Grid item sx={styles.gridItem}>
+          <Grid item xs={12} md={4}>
             <BlogCard />
           </Grid>
         </Grid>

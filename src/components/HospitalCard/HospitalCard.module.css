@@ -1,0 +1,119 @@
+/* Outer card container */
+.card {
+  border-radius: 16px;
+  background-color: #fff;
+  padding: 16px;
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: 32px;
+  }
+}
+
+/* Icon image box */
+.icon {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* Hospital name heading */
+.name {
+  color: var(--mui-palette-primary-main);
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+  line-height: 1;
+}
+
+@media (min-width: 900px) {
+  .name {
+    font-size: 20px;
+  }
+}
+
+/* City & State */
+.location {
+  text-transform: capitalize;
+  color: #414146;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Type info */
+.type {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Price info */
+.freeText {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--mui-palette-primary-green);
+}
+
+.strike {
+  text-decoration: line-through;
+  color: #787887;
+}
+
+/* Divider between sections */
+.divider {
+  border-style: dashed;
+  margin-bottom: 16px;
+}
+
+/* Rating badge container */
+.rating {
+  display: flex;
+  align-items: center;
+  background-color: var(--mui-palette-primary-green);
+  padding: 4px 8px;
+  border-radius: 8px;
+  width: fit-content;
+  gap: 4px;
+}
+
+/* Rating thumb icon */
+.thumb {
+  width: 16px;
+  height: 16px;
+}
+
+@media (min-width: 900px) {
+  .thumb {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Rating value */
+.ratingValue {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+@media (min-width: 900px) {
+  .ratingValue {
+    font-size: 16px;
+  }
+}
+
+/* Booking text */
+.available {
+  text-align: center;
+  color: var(--mui-palette-primary-green);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Booking chips */
+.chip {
+  border-radius: 8px;
+  font-size: 14px;
+}

@@ -1,98 +1,21 @@
-
-/* Style for the Swiper container */
-.swiperStyles {
-  padding: 20px 0;
-}
-
-/* Style for individual Swiper slides */
+/* Styles for each slide */
 .swiperslide {
-  text-align: center;
-  cursor: pointer;
+  width: calc(100% / 3 - 20px) !important;
+  overflow: hidden;
 }
 
-/* Style for the date text */
-.dateTypography {
-  font-weight: 400;
-  font-size: 11px;
-}
-
-/* Style for the selected date text */
-.dateTypographySelected {
-  font-weight: 700;
-}
-
-/* Style for the slots available text */
-.slotsTypography {
-  font-size: 8px;
-  color: #00A500; /* Assuming primary.green is #00A500 */
-}
-
-/* Style for the indicator box */
-.indicatorBox {
-  height: 4px;
+/* Styles for the Swiper container */
+.swiperStyles {
+  padding: 0 50px;
   width: 100%;
-  position: relative;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0);
-  left: 0;
-  z-index: 999;
-  margin-top: 5px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* Style for the selected indicator box */
-.indicatorBoxSelected {
-  background-color: #2AA7FF; /* Assuming primary.main is #2AA7FF */
-}
-
-/* Style for the divider box */
-.dividerBox {
-  height: 4px;
-  width: calc(100% - 150px);
-  background-color: #F0F0F5;
-  margin-top: 5px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* Media query for screens wider than 768px */
-@media (min-width: 768px) {
-  .dateTypography {
-    font-size: 16px;
-  }
-
-  .slotsTypography {
-    font-size: 12px;
-  }
-
-  .indicatorBox {
-    height: 5px;
-    width: calc(100% - 50px);
-  }
-}
-
-/* Custom styles for Swiper slides */
-.swiperslide {
-  width: calc(100% / 3 - 20px) !important; /* Set the width of each slide to be one-third of the container minus 20px */
-  overflow: hidden; /* Hide any content that overflows the slide */
-}
-
-/* Custom styles for the Swiper container */
-.swiperStyles {
-  padding: 0 50px; /* Add padding to the left and right of the Swiper container */
-  width: 100%; /* Set the width to 100% */
-}
-
-/* Media query for screens with a maximum width of 900px */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 900px) {
   .swiperStyles {
-    padding: 0; /* Remove padding on smaller screens */
+    padding: 0;
   }
-
   .swiperslide {
-    width: auto !important; /* Set the width to auto on smaller screens */
+    width: auto !important;
   }
 }

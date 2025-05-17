@@ -1,116 +1,111 @@
-//import { useState } from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Box, Divider, Stack, Typography } from "@mui/material";
-import { SlideNextButton, SlidePrevButton } from "./SliderButtons";
-import styles from "./DaySelector.module.css";
-import { format, add, isEqual, startOfDay } from "date-fns";
+import { useEffect, useState } from 'react';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Box, Divider, Stack, Typography } from '@mui/material';
+import styles from './DaySelector.module.css';
+import { format, add, isEqual, startOfDay } from 'date-fns';
+import { SlideNextButton, SlidePrevButton } from './SliderButtons';
 
-/**
- * DaySelector component for selecting a date from a list of available dates.
- *
- * @param {Date} selectedDate - The currently selected date.
- * @param {function} setSelectedDate - Function to set the selected date.
- * @param {number} totalSlots - Total number of available slots for the selected date.
- */
-export default function DaySelector({
-  selectedDate,
-  setSelectedDate,
-  totalSlots,
-}) {
-  // Get the start of the current day
+export default function DaySelector({ selectedDate, setSelectedDate, totalSlots }) {
   const date = startOfDay(new Date());
   const dateItems = [];
 
-  // Generate an array of dates for the next 7 days
+  // Generate an array of 7 dates starting from today
   for (let i = 0; i < 7; i++) {
     dateItems.push(add(date, { days: i }));
   }
 
-  /**
-   * Format the date for display.
-   *
-   * @param {Date} day - The date to format.
-   * @returns {string} The formatted date string.
-   */
+  // Format date labels for display
   const customDateFormat = (day) => {
     if (isEqual(date, day)) {
-      return "Today";
+      return 'Today';
     } else if (isEqual(date, add(day, { days: -1 }))) {
-      return "Tomorrow";
+      return 'Tomorrow';
     } else {
-      return format(day, "E, d LLL"); // Format the date as "Day, Date Month"
+      return format(day, 'E, d LLL');
     }
   };
 
-  /**
-   * Handle the click event for selecting a date.
-   *
-   * @param {Date} day - The selected date.
-   */
+  // Handle click to set selected date
   const handleClick = (day) => {
     setSelectedDate(day);
   };
 
   return (
     <Stack pt={3} position="relative">
-      {/* Divider line */}
       <Divider sx={{ mb: 3 }} />
 
-      {/* Swiper component for sliding through dates */}
+      {/* Swiper carousel for days */}
       <Swiper
-        slidesPerView={4} // Number of slides visible at once
-        loop={false} // Disable loop mode
-        spaceBetween={11} // Space between slides
-        className={styles.swiperStyles} // Apply custom styles
+        slidesPerView={4}
+        loop={false}
+        spaceBetween={11}
+        className={styles.swiperStyles}
         breakpoints={{
           767: {
-            spaceBetween: 30, // Space between slides on screens wider than 767px
-            slidesPerView: 3, // Number of slides visible on screens wider than 767px
+            spaceBetween: 30,
+            slidesPerView: 3,
           },
         }}
       >
-        {/* Generate SwiperSlides for each date */}
         {dateItems.map((day, index) => (
           <SwiperSlide key={index} className={styles.swiperslide}>
-            <Stack onClick={() => handleClick(day)}>
-              {/* Display the formatted date */}
+            <Stack
+              textAlign="center"
+              onClick={() => handleClick(day)}
+              sx={{ cursor: 'pointer' }}
+            >
               <Typography
-                className={`${styles.dateTypography} ${isEqual(day, selectedDate) ? styles.dateTypographySelected : ''}`}
+                fontWeight={isEqual(day, selectedDate) ? 700 : 400}
+                fontSize={{ xs: 11, md: 16 }}
               >
                 {customDateFormat(day)}
               </Typography>
-
-              {/* Display the number of available slots */}
-              <Typography className={styles.slotsTypography}>
+              <Typography fontSize={{ xs: 8, md: 12 }} color="primary.green">
                 {`${totalSlots} Slots Available`}
               </Typography>
 
-              {/* Indicator box for the selected date */}
+              {/* Highlight bar under selected day */}
               <Box
-                className={`${styles.indicatorBox} ${isEqual(day, selectedDate) ? styles.indicatorBoxSelected : ''}`}
+                height={{ xs: '4px', md: '5px' }}
+                width={{ xs: 1, md: 'calc(100% - 50px)' }}
+                position="relative"
+                bottom="0"
+                bgcolor={isEqual(day, selectedDate) ? 'primary.main' : 'rgba(0,0,0,0)'}
+                left={0}
+                zIndex={999}
+                mt="5px"
+                mx="auto"
               />
             </Stack>
           </SwiperSlide>
         ))}
 
-        {/* Previous slide button */}
+        {/* Custom prev and next buttons, shown only on md+ screens */}
         <span slot="container-start">
-          <Box display={{ xs: "none", md: "block" }}>
+          <Box display={{ xs: 'none', md: 'block' }}>
             <SlidePrevButton />
           </Box>
         </span>
-
-        {/* Next slide button */}
         <span slot="container-end">
-          <Box display={{ xs: "none", md: "block" }}>
+          <Box display={{ xs: 'none', md: 'block' }}>
             <SlideNextButton />
           </Box>
         </span>
       </Swiper>
 
-      {/* Divider box at the bottom */}
-      <Box className={styles.dividerBox} />
+      {/* Background bar below the slider */}
+      <Box
+        height={{ xs: '4px', md: '5px' }}
+        width={{ xs: 1, md: 'calc(100% - 150px)' }}
+        bgcolor="#F0F0F5"
+        mt="5px"
+        position="absolute"
+        bottom={0}
+        left="50%"
+        sx={{ translate: '-50% 0' }}
+      />
     </Stack>
   );
 }

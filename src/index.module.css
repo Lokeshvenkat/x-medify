@@ -1,0 +1,95 @@
+:root {
+  /* Define global CSS variables */
+  --color-white: #ffffff;
+}
+
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Apply border-box sizing to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin from all elements */
+* {
+  margin: 0;
+}
+
+/* Ensure html and body take up full height */
+html,
+body {
+  height: 100%;
+}
+
+/* Improve text rendering and default line height */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Make media elements responsive by default */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Ensure form elements inherit font styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Improve word breaking for headings and paragraphs */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Enable isolation to prevent stacking context issues */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* -------------------------- */
+/* Custom Swiper Pagination  */
+/* -------------------------- */
+
+.swiper-pagination {
+  /* Align bullets horizontally with spacing */
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding-bottom: 5px;
+}
+
+.swiper-pagination-bullet {
+  /* Style for inactive pagination bullets */
+  height: 10px;
+  width: 10px;
+  background: #BCD8E9;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  /* Highlight the active bullet */
+  background: #2AA7FF;
+  outline: 1px solid #2AA7FF;
+  outline-offset: 4px;
+}

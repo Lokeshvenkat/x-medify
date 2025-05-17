@@ -1,35 +1,13 @@
 import { Stack, TextField, Button } from "@mui/material";
 import { useState, useMemo } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-
-// Define styles object for the SearchBar component
-const styles = {
-  formStack: {
-    direction: "row",
-    spacing: 2,
-  },
-  textField: {
-    type: "text",
-    label: "Search By Hospital",
-    variant: "outlined",
-    fullWidth: true,
-    inputProps: { maxLength: 100 }, // Limiting input to 100 characters
-  },
-  searchButton: {
-    type: "submit",
-    variant: "contained",
-    size: "large",
-    startIcon: <SearchIcon />,
-    sx: { py: "15px", px: 8, flexShrink: 0 },
-    disableElevation: true,
-  },
-};
+import styles from "./SearchBar.module.css";
+import React from 'react';
 
 export default function SearchBar({ list, filterList }) {
-  // State to store the input text
   const [inputText, setInputText] = useState("");
 
-  // Memoizing the filtered list to prevent unnecessary recalculations
+  // Filter hospitals by name, memoized for performance
   const filteredList = useMemo(() => {
     if (!inputText.trim()) return list;
     return list.filter((item) =>
@@ -39,7 +17,7 @@ export default function SearchBar({ list, filterList }) {
     );
   }, [inputText, list]);
 
-  // Handle form submission
+  // Handle form submission to trigger filtering
   const handleSubmit = (e) => {
     e.preventDefault();
     filterList(filteredList);
@@ -47,13 +25,24 @@ export default function SearchBar({ list, filterList }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Stack sx={styles.formStack}>
+      <Stack direction="row" spacing={2}>
         <TextField
-          sx={styles.textField}
+          type="text"
+          label="Search By Hospital"
+          variant="outlined"
+          fullWidth
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
+          inputProps={{ maxLength: 100 }} // Limit input length
         />
-        <Button sx={styles.searchButton}>
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          startIcon={<SearchIcon />}
+          className={styles.searchButton}
+          disableElevation
+        >
           Search
         </Button>
       </Stack>

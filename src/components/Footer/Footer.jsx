@@ -1,63 +1,45 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import logo from "../../assets/logo.jpg";
-import fb from "../../assets/fb.jpg";
-import pinterest from "../../assets/pinterest.jpg";
-import twitter from "../../assets/twitter.jpg";
-import yt from "../../assets/yt.jpg";
+import {
+  Box,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import logo from "../../assets/logo.png";
+import fb from "../../assets/fb.png";
+import pinterest from "../../assets/pinterest.png";
+import twitter from "../../assets/twitter.png";
+import yt from "../../assets/yt.png";
 import FooterLink from "./FooterLink";
-
-// Define styles object
-const styles = {
-  footerContainer: {
-    bgcolor: "primary.secondary",
-    pb: 3,
-    pt: 6,
-  },
-  logo: {
-    height: 36,
-    mb: 2,
-  },
-  socialIcon: {
-    height: 36,
-  },
-  copyrightText: {
-    fontWeight: 300,
-    color: "#fff",
-    fontSize: 14,
-    pt: 3,
-    mt: 5,
-    borderTop: "1px solid rgba(255,255,255,0.1)",
-  },
-};
+import styles from "./Footer.module.css"; 
+import React from 'react';
 
 export default function Footer() {
   return (
-    <Box sx={styles.footerContainer}>
+    // Main footer wrapper with background color and padding
+    <Box className={styles.footerWrapper}>
       <Container maxWidth="xl">
         <Grid container spacing={4}>
-          {/* Logo and social media icons */}
+          {/* Logo + social icons section */}
           <Grid item xs={12} md={4.5}>
             <Stack
               alignItems="flex-start"
               justifyContent="space-between"
-              height={1}
+              height="100%"
             >
-              <Box
-                src={logo}
-                alt="Medify"
-                component="img"
-                sx={styles.logo}
-              />
+              {/* Brand logo */}
+              <Box src={logo} height={36} alt="Medify" component="img" mb={2} />
+              {/* Social media icons */}
               <Stack direction="row" spacing={1.5}>
-                <Box component="img" src={fb} sx={styles.socialIcon} />
-                <Box component="img" src={twitter} sx={styles.socialIcon} />
-                <Box component="img" src={yt} sx={styles.socialIcon} />
-                <Box component="img" src={pinterest} sx={styles.socialIcon} />
+                <Box component="img" src={fb} height={36} />
+                <Box component="img" src={twitter} height={36} />
+                <Box component="img" src={yt} height={36} />
+                <Box component="img" src={pinterest} height={36} />
               </Stack>
             </Stack>
           </Grid>
 
-          {/* First column of footer links */}
+          {/* Link groups */}
           <Grid item xs={12} md={2.5}>
             <Stack spacing={2}>
               <FooterLink>About Us</FooterLink>
@@ -68,7 +50,6 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          {/* Second column of footer links */}
           <Grid item xs={12} md={2.5}>
             <Stack spacing={2}>
               <FooterLink>Orthology</FooterLink>
@@ -79,7 +60,6 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          {/* Third column of footer links */}
           <Grid item xs={12} md={2.5}>
             <Stack spacing={2}>
               <FooterLink>About Us</FooterLink>
@@ -91,8 +71,8 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        {/* Copyright text */}
-        <Typography sx={styles.copyrightText}>
+        {/* Bottom copyright text */}
+        <Typography className={styles.footerCopyright}>
           Copyright ©2023 Surya Nursing Home.com. All Rights Reserved
         </Typography>
       </Container>

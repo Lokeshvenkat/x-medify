@@ -1,0 +1,44 @@
+.App {
+  /* Centers all text inside the App container */
+  text-align: center;
+}
+
+.App-logo {
+  /* Sets a responsive height and disables pointer events */
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    /* Spins the logo infinitely if user allows animations */
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /* Full height header with centered content and dark background */
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  /* Light blue color for links */
+  color: #61dafb;
+}
+
+/* Animation to rotate the logo continuously */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,4 +1,3 @@
-// Import necessary components from Material-UI and custom components
 import { Container, Box, Stack } from "@mui/material";
 import HeroSlider from "../components/HeroSlider/HeroSlider";
 import SearchHospital from "../components/SearchHospital/SearchHospital";
@@ -11,67 +10,54 @@ import Specialization from "../components/Sections/Specialization/Specialization
 import Offers from "../components/Sections/Offers/Offers";
 import NavBar from "../components/NavBar/NavBar";
 import HeroServices from "../components/IconLayout/HeroServices";
+import React from 'react';
 
-// Define the styles object
-const styles = {
-  mainContainer: {
-    background: "linear-gradient(#E7F0FF , rgba(232, 241, 255, 0.47) 90%, #fff 10%)",
-    mb: 4,
-  },
-  heroStack: {
-    p: { xs: 2.5, md: 8 },
-    mt: { xs: -2, md: 0, lg: -6, xl: -10 },
-    position: "relative",
-    zIndex: 99,
-    bgcolor: "#fff",
-    borderRadius: "15px",
-    spacing: 10,
-    boxShadow: "0 0 12px rgba(0,0,0,0.1)",
-  },
-};
-
-// Define the Home component
 export default function Home() {
   return (
-    // Main container box
     <Box>
-      {/* Background styled box */}
-      <Box sx={styles.mainContainer}>
-        {/* Navigation bar component */}
+      {/* Top section with background gradient */}
+      <Box
+        sx={{
+          background:
+            "linear-gradient(#E7F0FF , rgba(232, 241, 255, 0.47) 90%, #fff 10%)",
+        }}
+        mb={4}
+      >
+        {/* Navigation bar */}
         <NavBar />
-        {/* Container with max width */}
+
+        {/* Container to center and constrain content width */}
         <Container maxWidth="xl">
-          {/* Hero slider component */}
+          {/* Hero slider banner */}
           <HeroSlider />
-          {/* Stack layout for search and hero services */}
-          <Stack sx={styles.heroStack}>
-            {/* Search hospital component */}
+
+          {/* White card area containing search and hero services with padding and shadow */}
+          <Stack
+            p={{ xs: 2.5, md: 8 }}
+            mt={{ xs: -2, md: 0, lg: -6, xl: -10 }}
+            position="relative"
+            zIndex={99}
+            bgcolor="#fff"
+            borderRadius="15px"
+            spacing={10}
+            boxShadow="0 0 12px rgba(0,0,0,0.1)"
+          >
+            {/* Hospital search input section */}
             <SearchHospital />
-            {/* Hero services component */}
+
+            {/* Hero services icons or info layout */}
             <HeroServices />
           </Stack>
         </Container>
       </Box>
 
-      {/* Offers section component */}
+      {/* Following sections displayed on the home page */}
       <Offers />
-
-      {/* Specialization section component */}
       <Specialization />
-
-      {/* Specialists section component */}
       <Specialists />
-
-      {/* Patient caring section component */}
       <PatientCaring />
-
-      {/* Blogs section component */}
       <Blogs />
-
-      {/* Our families section component */}
       <OurFamilies />
-
-      {/* FAQs section component */}
       <FAQs />
     </Box>
   );

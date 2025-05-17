@@ -1,0 +1,7 @@
+.searchButton {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 32px;
+  padding-right: 32px;
+  flex-shrink: 0;
+}

@@ -3,122 +3,65 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import HospitalCard from "../components/HospitalCard/HospitalCard";
-import icon from "../assets/tick.jpg";
-import cta from "../assets/cta.jpg";
+import icon from "../assets/tick.png";
+import cta from "../assets/cta.png";
 import SearchHospital from "../components/SearchHospital/SearchHospital";
 import BookingModal from "../components/BookingModal/BookingModal";
 import AutohideSnackbar from "../components/AutohideSnackbar/AutohideSnackbar";
 import NavBar from "../components/NavBar/NavBar";
+import React from 'react';
 
-// Define the styles object
-const styles = {
-  mainContainer: {
-    background: "linear-gradient(#EFF5FE, rgba(241,247,255,0.47))",
-    width: "100%",
-    pl: 0,
-  },
-  headerSection: {
-    position: "relative",
-    background: "linear-gradient(90deg, #2AA7FF, #0C8CE5)",
-    borderBottomLeftRadius: "1rem",
-    borderBottomRightRadius: "1rem",
-  },
-  searchContainer: {
-    background: "#fff",
-    p: 3,
-    borderRadius: 2,
-    transform: "translatey(50px)",
-    mb: "50px",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-  },
-  contentContainer: {
-    pt: 8,
-    pb: 10,
-    px: { xs: 0, md: 4 },
-  },
-  hospitalsInfo: {
-    mb: 3,
-  },
-  hospitalsTitle: {
-    component: "h1",
-    fontSize: 24,
-    lineHeight: 1.1,
-    mb: 2,
-    fontWeight: 500,
-  },
-  infoStack: {
-    direction: "row",
-    spacing: 2,
-  },
-  infoText: {
-    color: "#787887",
-    lineHeight: 1.4,
-  },
-  hospitalCardsStack: {
-    mb: { xs: 4, md: 0 },
-    spacing: 3,
-    width: { xs: 1, md: "calc(100% - 384px)" },
-    mr: "24px",
-  },
-  loadingMessage: {
-    variant: "h3",
-    bgcolor: "#fff",
-    p: 3,
-    borderRadius: 2,
-  },
-  selectionMessage: {
-    variant: "h3",
-    bgcolor: "#fff",
-    p: 3,
-    borderRadius: 2,
-  },
-};
-
-// Define the Search component
 export default function Search() {
-  // State management
-  const [searchParams] = useSearchParams();
+  // React Router hook to access search query parameters
+  const [seachParams, setSearchParams] = useSearchParams();
+
+  // States for hospital data and form selections
   const [hospitals, setHospitals] = useState([]);
-  const [state, setState] = useState(searchParams.get("state"));
-  const [city, setCity] = useState(searchParams.get("city"));
+  const [state, setState] = useState(seachParams.get("state"));
+  const [city, setCity] = useState(seachParams.get("city"));
+
+  // Predefined available appointment slots
   const availableSlots = {
     morning: ["11:30 AM"],
     afternoon: ["12:00 PM", "12:30 PM", "01:30 PM", "02:00 PM", "02:30 PM"],
     evening: ["06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM"],
   };
+
+  // Modal and feedback state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState({});
   const [showBookingSuccess, setShowBookingSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch hospitals based on state and city selection
+  // Fetch hospitals data from API based on state and city
   useEffect(() => {
-    const fetchHospitals = async () => {
+    const getHospitals = async () => {
       setHospitals([]);
       setIsLoading(true);
       try {
-        const response = await axios.get(
+        const data = await axios.get(
           `https://meddata-backend.onrender.com/data?state=${state}&city=${city}`
         );
-        setHospitals(response.data);
+        setHospitals(data.data);
         setIsLoading(false);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        console.log(err);
         setIsLoading(false);
       }
     };
 
     if (state && city) {
-      fetchHospitals();
+      getHospitals();
     }
   }, [state, city]);
 
+  // Update state and city whenever searchParams change
   useEffect(() => {
-    setState(searchParams.get("state"));
-    setCity(searchParams.get("city"));
-  }, [searchParams]);
+    setState(seachParams.get("state"));
+    setCity(seachParams.get("city"));
+  }, [seachParams]);
 
-  // Show booking modal
+  // Opens the booking modal with selected hospital details
   const handleBookingModal = (details) => {
     setBookingDetails(details);
     setIsModalOpen(true);
@@ -126,32 +69,61 @@ export default function Search() {
 
   return (
     <>
-      {/* Navigation bar component */}
       <NavBar />
-      {/* Main container with gradient background */}
-      <Box sx={styles.mainContainer}>
-        {/* Header section with gradient background */}
-        <Box sx={styles.headerSection}>
-          {/* Container for search component */}
-          <Container maxWidth="xl" sx={styles.searchContainer}>
+
+      {/* Hero Section background with gradient */}
+      <Box
+        sx={{
+          background: "linear-gradient(#EFF5FE, rgba(241,247,255,0.47))",
+          width: "100%",
+          pl: 0,
+        }}
+      >
+        {/* Top header box with a gradient background and search container */}
+        <Box
+          sx={{
+            position: "relative",
+            background: "linear-gradient(90deg, #2AA7FF, #0C8CE5)",
+            borderBottomLeftRadius: "1rem",
+            borderBottomRightRadius: "1rem",
+          }}
+        >
+          {/* White box containing the search form */}
+          <Container
+            maxWidth="xl"
+            sx={{
+              background: "#fff",
+              p: 3,
+              borderRadius: 2,
+              transform: "translatey(50px)",
+              mb: "50px",
+              boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+            }}
+          >
             <SearchHospital />
           </Container>
         </Box>
 
-        {/* Container for content */}
-        <Container maxWidth="xl" sx={styles.contentContainer}>
-          {/* Display hospitals info if available */}
+        {/* Hospital listing section */}
+        <Container maxWidth="xl" sx={{ pt: 8, pb: 10, px: { xs: 0, md: 4 } }}>
+          {/* Results heading and description if hospitals are found */}
           {hospitals.length > 0 && (
-            <Box sx={styles.hospitalsInfo}>
-              <Typography sx={styles.hospitalsTitle}>
+            <Box sx={{ mb: 3 }}>
+              <Typography
+                component="h1"
+                fontSize={24}
+                lineHeight={1.1}
+                mb={2}
+                fontWeight={500}
+              >
                 {`${hospitals.length} medical centers available in `}
                 <span style={{ textTransform: "capitalize" }}>
                   {city.toLocaleLowerCase()}
                 </span>
               </Typography>
-              <Stack sx={styles.infoStack}>
+              <Stack direction="row" spacing={2}>
                 <img src={icon} height={24} width={24} alt="icon" />
-                <Typography sx={styles.infoText}>
+                <Typography color="#787887" lineHeight={1.4}>
                   Book appointments with minimum wait-time & verified doctor
                   details
                 </Typography>
@@ -159,10 +131,15 @@ export default function Search() {
             </Box>
           )}
 
-          {/* Stack layout for hospital cards and CTA image */}
+          {/* Hospital cards and conditional messages */}
           <Stack alignItems="flex-start" direction={{ md: "row" }}>
-            <Stack sx={styles.hospitalCardsStack}>
-              {/* Render hospital cards for each hospital */}
+            <Stack
+              mb={{ xs: 4, md: 0 }}
+              spacing={3}
+              width={{ xs: 1, md: "calc(100% - 384px)" }}
+              mr="24px"
+            >
+              {/* Display each hospital card */}
               {hospitals.length > 0 &&
                 hospitals.map((hospital) => (
                   <HospitalCard
@@ -173,25 +150,26 @@ export default function Search() {
                   />
                 ))}
 
-              {/* Loading message */}
+              {/* Show loading or prompt if no location selected */}
               {isLoading && (
-                <Typography sx={styles.loadingMessage}>Loading...</Typography>
+                <Typography variant="h3" bgcolor="#fff" p={3} borderRadius={2}>
+                  Loading...
+                </Typography>
               )}
 
-              {/* Message when no state is selected */}
               {!state && (
-                <Typography sx={styles.selectionMessage}>
+                <Typography variant="h3" bgcolor="#fff" p={3} borderRadius={2}>
                   Please select a state and city
                 </Typography>
               )}
             </Stack>
 
-            {/* CTA image */}
+            {/* Right-side banner image */}
             <img src={cta} width={360} height="auto" alt="banner" />
           </Stack>
         </Container>
 
-        {/* Booking modal component */}
+        {/* Booking modal */}
         <BookingModal
           open={isModalOpen}
           setOpen={setIsModalOpen}
@@ -199,7 +177,7 @@ export default function Search() {
           showSuccessMessage={setShowBookingSuccess}
         />
 
-        {/* Autohide snackbar component */}
+        {/* Snackbar confirmation after successful booking */}
         <AutohideSnackbar
           open={showBookingSuccess}
           setOpen={setShowBookingSuccess}

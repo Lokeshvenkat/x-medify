@@ -1,7 +1,7 @@
 
 describe('Hospital', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000'); // Adjust the URL to match your application
+    cy.visit('https://x-medify-ten.vercel.app'); // Adjust the URL to match your application
   });
 
   it('should display state and city dropdowns', () => {

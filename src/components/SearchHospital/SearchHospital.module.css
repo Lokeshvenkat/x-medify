@@ -1,0 +1,25 @@
+.formContainer {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media (max-width: 900px) {
+  .formContainer {
+    flex-direction: column;
+  }
+}
+
+.selectField {
+  min-width: 200px;
+  width: 100%;
+}
+
+.searchButton {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 32px;
+  padding-right: 32px;
+  flex-shrink: 0;
+}

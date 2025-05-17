@@ -1,56 +1,37 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import banner from '../../../assets/our-families-banner.jpg';
-
-// Define styles object for the OurFamilies component
-const styles = {
-  container: {
-    pt: 3,
-    background: 'linear-gradient(#E7F0FF, #E8F1FF)',
-  },
-  heading: {
-    fontWeight: 600,
-    color: "primary.main",
-  },
-  subHeading: {
-    variant: "h2",
-  },
-  description: {
-    color: '#77829D',
-    lineHeight: 1.8,
-  },
-  bannerImage: {
-    component: 'img',
-    src: banner,
-    width: 1,
-    height: 'auto',
-  },
-};
+import banner from '../../../assets/our-families-banner.png';
+import styles from './OurFamilies.module.css';
+import React from 'react';
 
 export default function OurFamilies() {
   return (
-    <Box sx={styles.container}>
+    <Box className={styles.containerBackground}>
       <Container>
         <Grid container alignItems='center' spacing={{ xs: 2, md: 10 }}>
           <Grid item xs={12} md={6}>
-            {/* Main heading for the section */}
-            <Typography sx={styles.heading}>
-              COMMITTED TO THE WELL-BEING OF YOU AND YOUR LOVED ONES.
+            <Typography
+              fontWeight={600}
+              color="primary.main"
+            >
+              CARING FOR THE HEALTH OF YOU AND YOUR FAMILY.
             </Typography>
-
-            {/* Subheading for the section */}
-            <Typography sx={styles.subHeading}>
-              Our Community
+            <Typography variant="h2">
+              Our Families
             </Typography>
-
-            {/* Description text */}
-            <Typography sx={styles.description}>
-              We collaborate with you to create personalized care plans, including chronic disease management. If we cannot assist, we can provide referrals or advice about the type of practitioner you require. We handle all inquiries with sensitivity and in the strictest confidence.
+            <Typography color='#77829D' lineHeight={1.8}>
+              We will work with you to develop individualised care plans, including management of chronic diseases. 
+              If we cannot assist, we can provide referrals or advice about the type of practitioner you require. 
+              We treat all enquiries sensitively and in the strictest confidence.
             </Typography>
           </Grid>
 
           <Grid item xs={12} md={6}>
-            {/* Banner image */}
-            <Box sx={styles.bannerImage} />
+            <Box
+              component='img'
+              src={banner}
+              width={1}
+              height='auto'
+            />
           </Grid>
         </Grid>
       </Container>

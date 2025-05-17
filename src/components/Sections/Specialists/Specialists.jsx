@@ -1,50 +1,36 @@
 import { Box, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
-import img1 from '../../../assets/lesley.jpg';
-import img2 from '../../../assets/ahmad.jpg';
-import img3 from '../../../assets/heena.jpg';
-import img4 from '../../../assets/ankur.jpg';
-import img5 from '../../../assets/ahmad-stevens.jpg';
+import img1 from '../../../assets/lesley.png';
+import img2 from '../../../assets/ahmad.png';
+import img3 from '../../../assets/heena.png';
+import img4 from '../../../assets/ankur.png';
+import img5 from '../../../assets/ahmad-stevens.png';
 import SpecialistCard from './SpecialistCard';
 import { Autoplay, Pagination } from 'swiper/modules';
-
-// Define styles object for the Specialists component
-const styles = {
-  container: {
-    py: 4,
-  },
-  heading: {
-    variant: "h2",
-    textAlign: 'center',
-    mb: 3,
-    px: 2,
-  },
-};
+import styles from './Specialists.module.css';
+import React from 'react';
 
 export default function Specialists() {
-  // Specialist data
+
   const specialist_data = [
     { img: img1, title: 'Dr. Lesley Hull', designation: 'Medicine' },
     { img: img2, title: 'Dr. Ahmad Khan', designation: 'Neurologist' },
-    { img: img3, title: 'Dr. Heena Sachdeva', designation: 'Orthopedics' },
+    { img: img3, title: 'Dr. Heena Sachdeva', designation: 'Orthopadics' },
     { img: img4, title: 'Dr. Ankur Sharma', designation: 'Medicine' },
     { img: img5, title: 'Dr. Ahmad Stevens', designation: 'Neurologist' },
     { img: img1, title: 'Dr. Lesley Hull', designation: 'Medicine' },
     { img: img2, title: 'Dr. Ahmad Khan', designation: 'Neurologist' },
-    { img: img3, title: 'Dr. Heena Sachdeva', designation: 'Orthopedics' },
+    { img: img3, title: 'Dr. Heena Sachdeva', designation: 'Orthopadics' },
     { img: img4, title: 'Dr. Ankur Sharma', designation: 'Medicine' },
     { img: img5, title: 'Dr. Ahmad Stevens', designation: 'Neurologist' }
   ];
 
   return (
-    <Box sx={styles.container} id="find-doctors">
-      {/* Main heading for the specialists section */}
-      <Typography sx={styles.heading}>
-        Our Medical Specialists
+    <Box py={0} className={styles.container} id="find-doctors">
+      <Typography variant="h2" className={styles.title}>
+        Our Medical Specialist
       </Typography>
-
-      {/* Swiper component for displaying specialist cards */}
       <Swiper
         slidesPerView={2}
         spaceBetween={20}
@@ -56,12 +42,12 @@ export default function Specialists() {
         }}
         modules={[Autoplay, Pagination]}
         pagination={{
-          clickable: true,
+          clickable: true
         }}
         breakpoints={{
           767: {
-            slidesPerView: 4,
-          },
+            slidesPerView: 4
+          }
         }}
       >
         {specialist_data.map((doc, index) => (
@@ -69,11 +55,10 @@ export default function Specialists() {
             <SpecialistCard
               img={doc.img}
               title={doc.title}
-              designation={doc.designation}
-            />
+              designation={doc.designation} />
           </SwiperSlide>
         ))}
       </Swiper>
     </Box>
-  );
+  )
 }

@@ -1,0 +1,21 @@
+/* Base card layout */
+.card {
+  padding: 24px;
+  border-radius: 16px;
+}
+
+/* Shadow effect if `shadow` prop is true */
+.shadow {
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.09);
+}
+
+/* Styles when `active` is true */
+.active {
+  border: 1px solid #2AA7FF;
+  background-color: rgba(42, 167, 255, 0.08);
+}
+
+/* Title text */
+.title {
+  font-size: 18px;
+}

@@ -1,0 +1,44 @@
+.downloadSection {
+  background: linear-gradient(#E7F0FF 100%, #E8F1FF 47%);
+  padding-top: 40px; /* pt: 5 in MUI spacing */
+}
+
+.mobileImage {
+  width: 100%;
+  height: auto;
+}
+
+.contentWrapper {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 900px) {
+  .contentWrapper {
+    padding-left: 50px;
+    margin-bottom: 0;
+  }
+}
+
+.arrowImage {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 24px;
+}
+
+@media (min-width: 900px) {
+  .arrowImage {
+    width: 40px;
+  }
+}
+
+.appButton {
+  background-color: #333 !important;
+  color: #fff !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  border-radius: 12px !important;
+  text-transform: none !important;
+}
